@@ -1,0 +1,35 @@
+name: Test workflow
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - "**.md"
+  pull_request:
+    paths-ignore:
+      - "**.md"
+  workflow_dispatch:
+
+jobs:
+  test-workflow:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./
+        id: get-deployment-path
+        with:
+          environment-name: 'dev'
+          dev-path: 'path/to/dev'
+          staging-path: 'path/to/staging'
+          prod-path: 'path/to/production'
+
+      - name: Test workflow output
+        run: |
+          if [ ${{ steps.get-deployment-path.outputs.deployment-path }} == 'path/to/dev' ]; then
+            echo "We did it!"
+          else
+            echo "oh no :("
+            exit 1
+          fi

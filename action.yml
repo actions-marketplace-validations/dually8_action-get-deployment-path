@@ -1,6 +1,9 @@
 name: 'Get Deployment Path'
 description: 'Get a deployment path based on an environment'
 author: 'CJ Coffey'
+branding:
+  color: red
+  icon: upload
 inputs:
   environment-name:
     description: 'Environment to deploy to'
