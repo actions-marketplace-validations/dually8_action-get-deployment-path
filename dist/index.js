@@ -69,10 +69,10 @@ const set_outputs_1 = __nccwpck_require__(170);
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const devPath = core.getInput(constants_1.Inputs.DevPath);
             const envName = core.getInput(constants_1.Inputs.EnvironmentName);
-            const prodPath = core.getInput(constants_1.Inputs.ProdPath);
-            const stagingPath = core.getInput(constants_1.Inputs.StagingPath);
+            const devPath = core.getInput(constants_1.Inputs.DevPath, { required: true });
+            const prodPath = core.getInput(constants_1.Inputs.ProdPath, { required: true });
+            const stagingPath = core.getInput(constants_1.Inputs.StagingPath, { required: true });
             (0, set_outputs_1.setOutputs)({
                 devPath,
                 envName,
@@ -131,18 +131,18 @@ function setOutputs({ devPath, envName, prodPath, stagingPath, }) {
         case "production":
         case "prod":
         case "prd":
-            core.info('Set output to prod');
+            core.info(`Set output to prod: ${prodPath}`);
             core.setOutput(constants_1.Outputs.DeploymentPath, prodPath);
             break;
         case "staging":
         case "acceptance":
         case "acc":
         case "stage":
-            core.info('Set output to staging');
+            core.info(`Set output to staging: ${stagingPath}`);
             core.setOutput(constants_1.Outputs.DeploymentPath, stagingPath);
             break;
         default:
-            core.info('Set output to dev');
+            core.info(`Set output to dev: ${devPath}`);
             core.setOutput(constants_1.Outputs.DeploymentPath, devPath);
             break;
     }

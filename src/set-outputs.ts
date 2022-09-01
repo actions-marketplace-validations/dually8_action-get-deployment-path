@@ -16,18 +16,18 @@ export function setOutputs({
     case "production":
     case "prod":
     case "prd":
-      core.info('Set output to prod');
+      core.info(`Set output to prod: ${prodPath}`);
       core.setOutput(Outputs.DeploymentPath, prodPath);
       break;
     case "staging":
     case "acceptance":
     case "acc":
     case "stage":
-      core.info('Set output to staging');
+      core.info(`Set output to staging: ${stagingPath}`);
       core.setOutput(Outputs.DeploymentPath, stagingPath);
       break;
     default:
-      core.info('Set output to dev');
+      core.info(`Set output to dev: ${devPath}`);
       core.setOutput(Outputs.DeploymentPath, devPath);
       break;
   }

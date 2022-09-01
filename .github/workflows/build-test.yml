@@ -21,4 +21,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: ./
         with:
-          milliseconds: 1000
+          environment-name: 'dev'
+          dev-path: 'path/to/dev'
+          staging-path: 'path/to/staging'
+          prod-path: 'path/to/production'

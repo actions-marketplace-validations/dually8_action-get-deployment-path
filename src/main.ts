@@ -4,10 +4,10 @@ import { setOutputs } from "./set-outputs";
 
 async function run() {
   try {
-    const devPath = core.getInput(Inputs.DevPath);
     const envName = core.getInput(Inputs.EnvironmentName);
-    const prodPath = core.getInput(Inputs.ProdPath);
-    const stagingPath = core.getInput(Inputs.StagingPath);
+    const devPath = core.getInput(Inputs.DevPath, { required: true });
+    const prodPath = core.getInput(Inputs.ProdPath, { required: true });
+    const stagingPath = core.getInput(Inputs.StagingPath, { required: true });
     setOutputs({
       devPath,
       envName,

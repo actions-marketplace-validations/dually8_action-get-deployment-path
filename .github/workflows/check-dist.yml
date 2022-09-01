@@ -37,10 +37,11 @@ jobs:
           npm run package
 
       - name: Compare the expected and actual dist/ directories
+        # Ignore the .js.map file in the diff because it clogs up the log
         run: |
           if [ "$(git diff --ignore-space-at-eol dist/ | wc -l)" -gt "0" ]; then
             echo "Detected uncommitted changes after build.  See status below:"
-            git diff
+            git diff -- ':!*js.map'
             exit 1
           fi
         id: diff
