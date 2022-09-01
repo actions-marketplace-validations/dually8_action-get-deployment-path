@@ -1,0 +1,29 @@
+{
+  "plugins": [
+    "jest",
+    "@typescript-eslint"
+  ],
+  "extends": [
+    "plugin:github/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 9,
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "env": {
+    "node": true,
+    "es6": true,
+    "jest/globals": true
+  },
+  "rules": {
+    "import/no-namespace": "off",
+    "no-console":"warn",
+    "prettier/prettier": "off",
+    "no-shadow": "off",
+    "no-unused-vars": "warn",
+    "i18n-text/no-en": "off",
+    "eslint-comments/no-use": "off"
+  }
+}

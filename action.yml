@@ -1,10 +1,23 @@
-name: 'Container Action Template'
-description: 'Get started with Container actions'
-author: 'GitHub'
-inputs: 
-  myInput:
-    description: 'Input to use'
-    default: 'world'
+name: 'Get Deployment Path'
+description: 'Get a deployment path based on an environment'
+author: 'CJ Coffey'
+inputs:
+  environment-name:
+    description: 'Environment to deploy to'
+    default: 'dev'
+    required: false
+  dev-path:
+    description: 'Development deployment path'
+    required: true
+  staging-path:
+    description: 'Staging deployment path'
+    required: true
+  prod-path:
+    description: 'Production deployment path'
+    required: true
+outputs:
+  deployment-path:
+    description: 'The path to deploy to based on the environment'
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: 'node16'
+  main: 'dist/index.js'

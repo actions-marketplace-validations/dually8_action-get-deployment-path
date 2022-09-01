@@ -1,16 +1,23 @@
-const core = require('@actions/core');
-const github = require('@actions/github');
+import * as core from "@actions/core";
+import { Inputs } from "./constants";
+import { setOutputs } from "./set-outputs";
 
 async function run() {
   try {
-    const myInput = core.getInput('myInput');
-    core.debug(`Hello ${myInput} from inside a container`);
-
-    // Get github context data
-    const context = github.context;
-    console.log(`We can even get context data, like the repo: ${context.repo.repo}`)
+    const devPath = core.getInput(Inputs.DevPath);
+    const envName = core.getInput(Inputs.EnvironmentName);
+    const prodPath = core.getInput(Inputs.ProdPath);
+    const stagingPath = core.getInput(Inputs.StagingPath);
+    setOutputs({
+      devPath,
+      envName,
+      prodPath,
+      stagingPath,
+    });
   } catch (error) {
-    core.setFailed(error.message);
+    if (error instanceof Error) {
+      core.setFailed(error.message);
+    }
   }
 }
 
